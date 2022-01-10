@@ -9,6 +9,12 @@ import java.util.List;
  */
 public abstract class BaseGenerator<T> implements Generator<T> {
 
+    // Override get() to ensure that everyone who implemented BaseGenerator in J7 can migrate peacefully.
+    @Override
+    public T get() {
+        return make();
+    }
+
     /**
      * Generate a T item.
      * @return a T item.

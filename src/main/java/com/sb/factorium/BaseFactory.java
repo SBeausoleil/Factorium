@@ -81,4 +81,9 @@ public abstract class BaseFactory<K, T> implements Factory<K, T> {
     public K getDefaultKey() {
         return defaultKey;
     }
+
+    @Override
+    public T get() {
+        return getGenerator(defaultKey).generate();
+    }
 }
