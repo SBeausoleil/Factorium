@@ -27,8 +27,10 @@ public class MethodModTest {
     @Test
     public void testNoMethodFound() {
         final long EXPECTED_RESULT = new Random().nextLong();
+        CityGenerator cityGenerator = new CityGenerator();
+        MethodMod badMethod = new MethodMod("blashblasdhasd", EXPECTED_RESULT);
         try {
-            new CityGenerator().generate(new MethodMod("blashblasdhasd", EXPECTED_RESULT));
+            cityGenerator.generate(badMethod);
             fail();
         } catch (RuntimeException e) {
             assertEquals(NoSuchMethodException.class, e.getCause().getClass());

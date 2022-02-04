@@ -8,6 +8,6 @@ import com.github.javafaker.Faker;
  */
 public abstract class FakerGenerator<T> extends BaseGenerator<T> {
 
-    public static Faker faker = new Faker();
+    public static final Faker faker = new Faker();
 
 }

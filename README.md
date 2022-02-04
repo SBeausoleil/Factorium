@@ -2,9 +2,8 @@
 A simple generator and factory framework.
 
 ## Compatibility
-Compatibility is guaranteed for Java 8 and up.
-
-For Java 7: https://github.com/SBeausoleil/Factorium-J7
+Guarantee is guaranteed for Java 7 as long as you use versions between 1.1.0 (inclusively) and 2.0.0 (exclusively).
+For Java 8, use versions above 2.0.0 (inclusively).
 
 ## How to use it
 The core interfaces of Factorium are **Generator**, **Factory**, and **Modifier**.
