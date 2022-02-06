@@ -47,7 +47,7 @@ public class FactoryProviderTest extends TestCase {
         assertNotNull(address);
 
         // Check that references were not changed
-        assertTrue(addressGenerator.getCityGenerator() == cityGenerator);
+        assertSame(addressGenerator.getCityGenerator(), cityGenerator);
     }
 
     public void testCreateRecordingFactoryProvider_replacingReferences() throws IllegalAccessException {

@@ -7,6 +7,22 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.lang.reflect.Field;
 import java.util.*;
 
+/**
+ * Regroup factories for an application.
+ * Create one using the FactoryProvider.make() method and giving it the generators to use.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * FactoryProvider<RecordingFactory<String, ?>> provider = FactoryProvider.make(
+ *      generators,
+ *      FactoryProvider.DefaultKey.DEFAULT_KEY,
+ *      new RecordingFactoryMaker(),
+ *      true);
+ * Address foo = provider.factory(Address.class).generate();
+ * }</pre>
+ *
+ * @param <F> the type of factories held by this provider
+ */
 public class FactoryProvider<F extends Factory<String, ?>> {
     public static final String DEFAULT_KEY = "default";
 
@@ -39,22 +55,23 @@ public class FactoryProvider<F extends Factory<String, ?>> {
     }
 
     /**
-     * @param generators
-     * @param keyPolicy
-     * @param factoryMaker
-     * @param replaceInnerReferences
+     * Create a FactoryProvider with the specified elements.
+     *
+     * @param generators             the generators to regroup
+     * @param keyPolicy              the policy to use for the generation of default keys
+     * @param factoryMaker           a factory maker that will regroup similar generators together into a factory
+     * @param replaceInnerReferences true if the generators should be modified to use the new factories internally
+     *                               (useful for recording factories and integration testing)
      * @param <F>                    the type of factory generated
-     * @return
+     * @return a new Factory provider
      * @throws IllegalAccessException if replaceInnerReference is true and a security manager prevents reflective access to generator members.
      */
     public static <F extends Factory<String, ?>> FactoryProvider<F> make(Collection<Generator<?>> generators,
                                                                          DefaultKey keyPolicy,
                                                                          FactoryMaker<F> factoryMaker,
                                                                          boolean replaceInnerReferences) throws IllegalAccessException {
-        // Organize generators by generated type
         Map<Class<?>, SortedSet<Generator<?>>> types = MetaGeneratorUtil.hierarchise(generators);
         Map<Class<?>, F> factories = new HashMap<>();
-        // Then create factories for each type
         for (Map.Entry<Class<?>, SortedSet<Generator<?>>> generatorsOfType : types.entrySet()) {
             Generator<?> defaultGenerator = generatorsOfType.getValue().first();
             String defaultKey = computeDefaultKey(keyPolicy, defaultGenerator);
