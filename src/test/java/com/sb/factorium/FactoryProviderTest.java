@@ -45,6 +45,9 @@ public class FactoryProviderTest extends TestCase {
         assertNotEquals(0, recordingAdressFactory.generators.size());
         Address address = provider.factory(Address.class).generate();
         assertNotNull(address);
+
+        // Check that references were not changed
+        assertTrue(addressGenerator.getCityGenerator() == cityGenerator);
     }
 
     public void testCreateRecordingFactoryProvider_replacingReferences() throws IllegalAccessException {
