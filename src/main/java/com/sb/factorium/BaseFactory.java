@@ -5,9 +5,11 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public abstract class BaseFactory<K, T> implements Factory<K, T> {
+
     private final Class<T> generatedType;
     protected K defaultKey;
     protected Map<K, Generator<T>> generators;
+
 
     protected BaseFactory(Class<T> generatedType, K defaultKey, Map<K, Generator<T>> generators) {
         if (!generators.containsKey(defaultKey)) {
@@ -81,11 +83,6 @@ public abstract class BaseFactory<K, T> implements Factory<K, T> {
     @Override
     public K getDefaultKey() {
         return defaultKey;
-    }
-
-    @Override
-    public T get() {
-        return getGenerator(defaultKey).generate();
     }
 
     public Class<T> getGeneratedType() {

@@ -1,6 +1,8 @@
 package com.sb.factorium;
 
 import com.sb.factorium.beans.Person;
+import com.sb.factorium.generators.AddressGenerator;
+import com.sb.factorium.generators.CityGenerator;
 import com.sb.factorium.generators.PersonGenerator;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,9 @@ public class RecordingFactoryTest {
     @Before
     public void setUp() {
         Map<String, Generator<Person>> generators = new HashMap<>();
-        generators.put(PersonGenerator.KEY, new PersonGenerator());
+        CityGenerator cityGenerator = new CityGenerator();
+        AddressGenerator addressGenerator = new AddressGenerator(cityGenerator);
+        generators.put(PersonGenerator.KEY, new PersonGenerator(cityGenerator, addressGenerator));
         personFactory = new RecordingFactory<>(Person.class, PersonGenerator.KEY, generators);
     }
 
