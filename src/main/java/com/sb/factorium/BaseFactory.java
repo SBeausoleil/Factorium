@@ -5,14 +5,15 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public abstract class BaseFactory<K, T> implements Factory<K, T> {
-
+    private final Class<T> generatedType;
     protected K defaultKey;
     protected Map<K, Generator<T>> generators;
 
-    protected BaseFactory(K defaultKey, Map<K, Generator<T>> generators) {
+    protected BaseFactory(Class<T> generatedType, K defaultKey, Map<K, Generator<T>> generators) {
         if (!generators.containsKey(defaultKey)) {
             throw new IllegalArgumentException("The default key is not present in the generators map.");
         }
+        this.generatedType = generatedType;
         this.defaultKey = defaultKey;
         this.generators = generators;
     }
@@ -85,5 +86,9 @@ public abstract class BaseFactory<K, T> implements Factory<K, T> {
     @Override
     public T get() {
         return getGenerator(defaultKey).generate();
+    }
+
+    public Class<T> getGeneratedType() {
+        return generatedType;
     }
 }

@@ -13,8 +13,8 @@ public class RecordingFactory<K, T> extends BaseFactory<K, T> {
 
     protected List<T> created;
 
-    public RecordingFactory(K defaultKey, Map<K, Generator<T>> generators) {
-        super(defaultKey, generators);
+    public RecordingFactory(Class<T> generatedType, K defaultKey, Map<K, Generator<T>> generators) {
+        super(generatedType, defaultKey, generators);
         this.created = new Vector<>();
     }
 

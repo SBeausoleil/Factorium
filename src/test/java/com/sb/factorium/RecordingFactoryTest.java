@@ -18,7 +18,7 @@ public class RecordingFactoryTest {
     public void setUp() {
         Map<String, Generator<Person>> generators = new HashMap<>();
         generators.put(PersonGenerator.KEY, new PersonGenerator());
-        personFactory = new RecordingFactory<>(PersonGenerator.KEY, generators);
+        personFactory = new RecordingFactory<>(Person.class, PersonGenerator.KEY, generators);
     }
 
     @Test
