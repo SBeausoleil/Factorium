@@ -6,7 +6,7 @@ import java.util.*;
 
 public final class MetaGeneratorUtil {
 
-    private static WeakHashMap<Generator<?>, Class<?>> returnTypesCache;
+    private static WeakHashMap<Generator<?>, Class<?>> returnTypesCache = new WeakHashMap<>();
 
     private static boolean tolerateUnknownAutoPersist = true;
 
@@ -75,7 +75,7 @@ public final class MetaGeneratorUtil {
     public static Map<Class<?>, SortedSet<Generator<?>>> hierarchise(Collection<Generator<?>> generators) {
         Map<Class<?>, SortedSet<Generator<?>>> hierarchy = new HashMap<>();
         for (Generator<?> generator : generators) {
-            for (Class<?> clazz : ClassUtils.hierarchy(generator.getClass(), ClassUtils.Interfaces.INCLUDE)) {
+            for (Class<?> clazz : ClassUtils.hierarchy(returnType(generator), ClassUtils.Interfaces.INCLUDE)) {
                 SortedSet<Generator<?>> generatorsForClass = hierarchy.get(clazz);
                 if (generatorsForClass == null) {
                     generatorsForClass = new TreeSet<>(new GeneratorComparator(

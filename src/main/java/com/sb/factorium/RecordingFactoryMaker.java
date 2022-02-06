@@ -2,13 +2,13 @@ package com.sb.factorium;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
 
 public class RecordingFactoryMaker implements FactoryMaker<RecordingFactory<String, ?>> {
     @Override
-    public RecordingFactory<String, ?> factorise(Collection<Generator<?>> generators,
+    public RecordingFactory<String, ?> factorise(SortedSet<Generator<?>> generators,
                                                  Class<?> target,
                                                  Pair<String, Generator<?>> defaultGenerator) {
 
@@ -24,7 +24,7 @@ public class RecordingFactoryMaker implements FactoryMaker<RecordingFactory<Stri
                 coreMap.put(key, generator);
             }
         }
-        // Use raw types to coerce the usage of the wildcards
+        // Use raw types to coerce out the usage of the wildcards (safe because of the earlier assignable check)
         return new RecordingFactory(target, defaultGenerator.getKey(), coreMap);
     }
 }

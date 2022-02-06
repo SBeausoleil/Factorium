@@ -22,17 +22,6 @@ public class RecordingFactory<K, T> extends BaseFactory<K, T> {
         pool.add(this);
     }
 
-    /**
-     * Allow making an unc
-     * @param generatedType
-     * @param defaultKey
-     * @param generators
-     * @return
-     */
-    public static RecordingFactory makeRaw(Class generatedType, Object defaultKey, Map generators) {
-        return new RecordingFactory(generatedType, defaultKey, generators);
-    }
-
     @Override
     protected void decorate(T newItem, Modifier[] modifiers) {
         created.add(newItem);

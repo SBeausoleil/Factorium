@@ -56,8 +56,9 @@ public class ClassDistanceComparator implements Comparator<Class<?>> {
                     break;
                 }
             }
-            if (hierarchyIt.hasNext()) {
-                throw new IllegalArgumentException(clazz.getName() + " is not a subclass of " + target.getName());
+            // Add an exception for Object.class, because the hierarchy method does not return the last level of all hierarchies
+            if (!hierarchyIt.hasNext() && target != Object.class) {
+                throw new IllegalArgumentException(clazz.getName() + " is not assignable to " + target.getName());
             }
             distance = dist;
             distancesCache.put(clazz, distance);
