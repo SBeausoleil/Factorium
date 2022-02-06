@@ -115,7 +115,7 @@ public class FactoryProvider<F extends Factory<String, ?>> {
                 result = MetaGeneratorUtil.suggestName(defaultGenerator);
                 break;
             default:
-                new IllegalArgumentException("Unrecognized keyPolicy! " + keyPolicy);
+                throw new IllegalArgumentException("Unrecognized keyPolicy! " + keyPolicy);
         }
         return result;
     }
