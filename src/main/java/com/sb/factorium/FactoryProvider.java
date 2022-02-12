@@ -97,7 +97,8 @@ public class FactoryProvider<F extends Factory<String, ?>> {
      */
     public static void replaceInnerReferences(Collection<Generator<?>> generators, Map<Class<?>, ? extends Factory<?, ?>> factories) throws IllegalAccessException {
         for (Generator<?> generator : generators) {
-            Map<Class<?>, Field[]> innerGenerators = ReflectionUtil.keepAssignableTo(ReflectionUtil.getAllFields(generator.getClass()), Generator.class);
+            Map<Class<?>, Field[]> fields = ReflectionUtil.getAllFields(generator.getClass());
+            Map<Class<?>, Field[]> innerGenerators = ReflectionUtil.keepAssignableFrom(fields, Generator.class, false);
             for (Field[] classFields : innerGenerators.values()) {
                 for (Field field : classFields) {
                     replaceContent(factories, generator, field);
