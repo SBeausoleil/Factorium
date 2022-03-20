@@ -1,5 +1,7 @@
 package com.sb.factorium;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 
 /**
@@ -49,5 +51,17 @@ public class FieldMod implements Modifier {
             targetField.setAccessible(originalAccess);
         }
         return target;
+    }
+
+    /**
+     * Return the path to the target field.
+     * @return the path to the target field.
+     */
+    public String fullTarget() {
+        return StringUtils.joinWith(".", nestedFields);
+    }
+
+    public Object getValue() {
+        return value;
     }
 }

@@ -73,4 +73,22 @@ public final class ReflectionUtil {
         }
         return result;
     }
+
+    public static Field[] removeFieldsOfClass(Field[] fields, Class<?> toRemove) {
+        ArrayList<Field> toKeep = new ArrayList<>(fields.length);
+        for (Field field : fields) {
+            if (!field.getType().equals(toRemove)) {
+                toKeep.add(field);
+            }
+        }
+        return toKeep.toArray(new Field[0]);
+    }
+
+    public static Map<Class<?>, Field[]> removeFieldsOfClass(Map<Class<?>, Field[]> fields, Class<?> toRemove) {
+        Map<Class<?>, Field[]> result = new LinkedHashMap<>();
+        for (Map.Entry<Class<?>, Field[]> classFields : fields.entrySet()) {
+            result.put(classFields.getKey(), removeFieldsOfClass(classFields.getValue(), toRemove));
+        }
+        return result;
+    }
 }
