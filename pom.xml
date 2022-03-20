@@ -11,7 +11,7 @@
     <groupId>io.github.sbeausoleil</groupId>
     <artifactId>factorium</artifactId>
     <!--
-        V1.1 for Java 7 branch
+        V1.1+ for Java 7 branch
         V2 for Java 8+ branch
     -->
     <version>2.0.3</version>

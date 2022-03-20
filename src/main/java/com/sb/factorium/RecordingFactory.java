@@ -1,9 +1,6 @@
 package com.sb.factorium;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * A RecordingFactory is a factory that keeps an accessible record of everything it has created.
@@ -28,7 +25,7 @@ public class RecordingFactory<K, T> extends BaseFactory<K, T> {
     }
 
     @Override
-    protected void decorate(List<T> newItems, Modifier[] modifiers) {
+    protected void decorate(Collection<T> newItems, Modifier[] modifiers) {
         created.addAll(newItems);
     }
 

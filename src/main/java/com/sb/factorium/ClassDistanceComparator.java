@@ -13,7 +13,7 @@ import java.util.WeakHashMap;
  * This comparator can be configured to never return equal (0). In such a case that two classes
  * are equidistant from the target, they will be compared lexicographically using their name.
  */
-public class ClassDistanceComparator implements Comparator<Class<?>> {
+class ClassDistanceComparator implements Comparator<Class<?>> {
 
     private Class<?> target;
     private final boolean allowEquals;
