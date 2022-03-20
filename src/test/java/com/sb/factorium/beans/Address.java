@@ -47,6 +47,11 @@ public class Address {
         this.city = city;
     }
 
+    public void setNumberAndStreet(int number, String street) {
+        this.number = number;
+        this.streetName = street;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,5 +1,6 @@
 package com.sb.factorium;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -74,7 +75,7 @@ public abstract class BaseFactory<K, T> implements Factory<K, T> {
      * @param newItems the list of created items
      * @param modifiers the modifiers applied to them.
      */
-    protected void decorate(List<T> newItems, Modifier[] modifiers) {
+    protected void decorate(Collection<T> newItems, Modifier[] modifiers) {
         for (T obj : newItems) {
             decorate(obj, modifiers);
         }

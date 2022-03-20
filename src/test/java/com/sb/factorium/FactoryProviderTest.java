@@ -6,11 +6,13 @@ import com.sb.factorium.generators.AddressGenerator;
 import com.sb.factorium.generators.CityGenerator;
 import com.sb.factorium.generators.PersonGenerator;
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
+
 
 public class FactoryProviderTest extends TestCase {
 
@@ -28,6 +30,7 @@ public class FactoryProviderTest extends TestCase {
 
         generators = new ArrayList<>();
         generators.add(cityGenerator);
+        generators.add(new CityGenerator.CapitalGenerator());
         generators.add(addressGenerator);
         generators.add(personGenerator);
     }
@@ -63,5 +66,44 @@ public class FactoryProviderTest extends TestCase {
 
         provider.factory(Address.class).generate();
         assertEquals(1, ((RecordingFactory) provider.factory(City.class)).created.size());
+    }
+
+    @Test
+    public void testComputeDefaultKey_defaultKey() {
+        assertEquals(FactoryProvider.DEFAULT_KEY, FactoryProvider.computeDefaultKey(FactoryProvider.DefaultKey.DEFAULT_KEY, cityGenerator));
+    }
+
+    @Test
+    public void testComputeDefaultKey_firstGenerator() {
+        assertEquals(CityGenerator.CapitalGenerator.KEY,
+                FactoryProvider.computeDefaultKey(FactoryProvider.DefaultKey.FIRST_GENERATOR, new CityGenerator.CapitalGenerator()));
+    }
+
+    private static class GeneratorContainingObject extends BaseGenerator<Object> {
+        static final String REF_VALUE = "Hello World";
+        Object objectReference = REF_VALUE;
+
+        @Override
+        protected Object make() {
+            return new Object();
+        }
+    }
+
+    /**
+     * Test that a generator that holds an Object field does not get that field replaced.
+     * @throws IllegalAccessException
+     */
+    public void testCreateRecordingFactoryProvider_generatorWithObject() throws IllegalAccessException {
+        GeneratorContainingObject generatorContainingObject = new GeneratorContainingObject();
+
+        generators.add(generatorContainingObject);
+        FactoryProvider<RecordingFactory<String, ?>> provider = FactoryProvider.make(
+                generators,
+                FactoryProvider.DefaultKey.DEFAULT_KEY,
+                new RecordingFactoryMaker(),
+                true);
+
+        assertNotNull(provider);
+        assertEquals(GeneratorContainingObject.REF_VALUE, generatorContainingObject.objectReference);
     }
 }

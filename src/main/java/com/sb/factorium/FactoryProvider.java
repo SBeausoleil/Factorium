@@ -99,6 +99,7 @@ public class FactoryProvider<F extends Factory<String, ?>> {
         for (Generator<?> generator : generators) {
             Map<Class<?>, Field[]> fields = ReflectionUtil.getAllFields(generator.getClass());
             Map<Class<?>, Field[]> innerGenerators = ReflectionUtil.keepAssignableFrom(fields, Generator.class, false);
+            innerGenerators = ReflectionUtil.removeFieldsOfClass(innerGenerators, Object.class);
             for (Field[] classFields : innerGenerators.values()) {
                 for (Field field : classFields) {
                     replaceContent(factories, generator, field);
@@ -123,7 +124,7 @@ public class FactoryProvider<F extends Factory<String, ?>> {
         field.setAccessible(originalAccessibility);
     }
 
-    private static String computeDefaultKey(DefaultKey keyPolicy, Generator<?> defaultGenerator) {
+    static String computeDefaultKey(DefaultKey keyPolicy, Generator<?> defaultGenerator) {
         String result = null;
         switch (keyPolicy) {
             case DEFAULT_KEY:
