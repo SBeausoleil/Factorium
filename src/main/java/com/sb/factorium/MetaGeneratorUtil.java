@@ -78,8 +78,7 @@ public final class MetaGeneratorUtil {
             for (Class<?> clazz : ClassUtils.hierarchy(returnType(generator), ClassUtils.Interfaces.INCLUDE)) {
                 SortedSet<Generator<?>> generatorsForClass = hierarchy.get(clazz);
                 if (generatorsForClass == null) {
-                    generatorsForClass = new TreeSet<>(new GeneratorComparator(
-                            new ClassDistanceComparator(clazz, false)));
+                    generatorsForClass = new TreeSet<>(new GeneratorComparator(clazz));
                     hierarchy.put(clazz, generatorsForClass);
                 }
                 generatorsForClass.add(generator);

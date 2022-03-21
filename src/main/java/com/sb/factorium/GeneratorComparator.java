@@ -1,5 +1,7 @@
 package com.sb.factorium;
 
+import com.sb.factorium.reflection.ReflectionUtil;
+
 import java.util.Comparator;
 
 /**
@@ -11,20 +13,29 @@ import java.util.Comparator;
  * generators using this comparator, the one you should use for default is the "lesser ordered" of the two generators.
  */
 public class GeneratorComparator implements Comparator<Generator<?>> {
-    private ClassDistanceComparator comparator;
+    private final ClassDistanceComparator comparator;
+    private final Class<?> target;
 
-    public GeneratorComparator(ClassDistanceComparator comparator) {
-        this.comparator = comparator;
+    public GeneratorComparator(Class<?> target) {
+        this.comparator = new ClassDistanceComparator(target, false);
+        this.target = target;
     }
 
     @Override
     public int compare(Generator<?> left, Generator<?> right) {
         GeneratorInfo leftInfo = left.getClass().getAnnotation(GeneratorInfo.class);
-        boolean isLeftDefault = leftInfo != null && leftInfo.isDefault();
+        boolean isLeftDefault = leftInfo != null && leftInfo.isDefault() && target.equals(leftInfo.target());
         GeneratorInfo rightInfo = right.getClass().getAnnotation(GeneratorInfo.class);
-        boolean isRightDefault = rightInfo != null && rightInfo.isDefault();
+        boolean isRightDefault = rightInfo != null && rightInfo.isDefault() && target.equals(rightInfo.target());
 
         if (isLeftDefault == isRightDefault) {
+            if (!isLeftDefault) {
+                /* If none of them are explicitly the default one for a type, check if one is a nested class within the other */
+                int enclosingOne = ReflectionUtil.checkEnclosing(left.getClass(), right.getClass());
+                if (enclosingOne != 0)
+                    return enclosingOne;
+            }
+
             return comparator.compare(MetaGeneratorUtil.returnType(left), MetaGeneratorUtil.returnType(right));
         } else if (isLeftDefault) {
             return -1;
