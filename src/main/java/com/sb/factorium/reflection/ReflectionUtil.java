@@ -91,4 +91,38 @@ public final class ReflectionUtil {
         }
         return result;
     }
+
+    /**
+     * Check if one of the given classes is enclosing the other.
+     * @param left left class
+     * @param right right class
+     * @return -1 if the left one encloses the right one
+     *          0 if none are enclosing the other
+     *          1 if the right one encloses the left one
+     */
+    public static int checkEnclosing(Class<?> left, Class<?> right) {
+        if (isEnclosedBy(right, left))
+            return -1;
+        else if (isEnclosedBy(left, right))
+            return 1;
+        return 0;
+    }
+
+    /**
+     * Check if the inner class is enclosed by the outer class.
+     * @param inner potential inner class
+     * @param outer potential outer class
+     * @return true if the inner class is nested within the outer at some level.
+     */
+    public static boolean isEnclosedBy(Class<?> inner, Class<?> outer) {
+        Class<?> current = inner;
+        Class<?> enclosing;
+        do {
+            enclosing = current.getEnclosingClass();
+            if (outer.equals(enclosing))
+                return true;
+            current = enclosing;
+        } while (enclosing != null);
+        return false;
+    }
 }

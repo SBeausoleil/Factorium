@@ -110,4 +110,19 @@ public class ReflectionUtilTest {
         Field[] nonFinalGenerators = innerGenerators.get(GeneratorWithFinalSubgenerator.class);
         assertFalse(ArrayUtils.contains(nonFinalGenerators, specificGenerator));
     }
+
+    @Test
+    public void testCheckEnclosing_leftEnclosing() {
+        assertEquals(-1, ReflectionUtil.checkEnclosing(CityGenerator.class, CityGenerator.CapitalGenerator.class));
+    }
+
+    @Test
+    public void testCheckEnclosing_rightEnclosing() {
+        assertEquals(1, ReflectionUtil.checkEnclosing(CityGenerator.CapitalGenerator.class, CityGenerator.class));
+    }
+
+    @Test
+    public void testCheckEnclosing_noEnclosing() {
+        assertEquals(0, ReflectionUtil.checkEnclosing(CityGenerator.class, AddressGenerator.class));
+    }
 }
