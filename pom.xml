@@ -34,9 +34,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/SBeausoleil/Factorium-J7.git</connection>
-        <developerConnection>scm:git:ssh://github.com:SBeausoleil/Factorium-J7.git</developerConnection>
-        <url>https://github.com/SBeausoleil/Factorium-J7/tree/main</url>
+        <connection>scm:git:git://github.com/SBeausoleil/Factorium.git</connection>
+        <developerConnection>scm:git:ssh://github.com:SBeausoleil/Factorium.git</developerConnection>
+        <url>https://github.com/SBeausoleil/Factorium/tree/main</url>
     </scm>
 
     <properties>
