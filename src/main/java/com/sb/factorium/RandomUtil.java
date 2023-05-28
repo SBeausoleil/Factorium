@@ -3,19 +3,15 @@ package com.sb.factorium;
 import java.util.*;
 
 public final class RandomUtil {
-    private static WeakHashMap<Class<?>, Object[]> enumsValuesCache = new WeakHashMap<>();
+    private static final WeakHashMap<Class<?>, Object[]> enumsValuesCache = new WeakHashMap<>();
 
-    private static Random rng = new Random();
+    private static final Random rng = new Random();
 
     private RandomUtil() {}
 
     public static <T extends Enum> T randomEnum(Class<T> enumClass) {
         @SuppressWarnings("unchecked") // It is impossible to check the type of object vs generic
-        T[] values = (T[]) enumsValuesCache.get(enumClass);
-        if (values == null) {
-            values = enumClass.getEnumConstants();
-            enumsValuesCache.put(enumClass, values);
-        }
+        T[] values = (T[]) enumsValuesCache.computeIfAbsent(enumClass, Class::getEnumConstants);
         return values[rng.nextInt(values.length)];
     }
 
