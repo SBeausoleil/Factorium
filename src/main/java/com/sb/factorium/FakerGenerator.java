@@ -1,6 +1,7 @@
 package com.sb.factorium;
 
-import com.github.javafaker.Faker;
+
+import net.datafaker.Faker;
 
 /**
  * BaseGenerator with a static Faker instance for quick use.

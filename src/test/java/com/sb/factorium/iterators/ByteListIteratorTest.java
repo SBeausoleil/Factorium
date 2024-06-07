@@ -1,10 +1,10 @@
 package com.sb.factorium.iterators;
 
-import com.github.javafaker.Faker;
-import org.junit.Before;
-import org.junit.Test;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ByteListIteratorTest {
     private static final Faker faker = new Faker();
@@ -12,7 +12,7 @@ public class ByteListIteratorTest {
     private byte[] array;
     private ByteListIterator iterator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         array = new byte[5];
         for (int i = 0; i < array.length; i++) {
@@ -71,10 +71,12 @@ public class ByteListIteratorTest {
         }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void remove() {
-        iterator.next();
-        iterator.remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            iterator.next();
+            iterator.remove();
+        });
     }
 
     @Test
@@ -85,9 +87,9 @@ public class ByteListIteratorTest {
         assertEquals(setTo, (byte) iterator.previous());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void add() {
-        iterator.add((byte) 0);
+        assertThrows(UnsupportedOperationException.class, () -> iterator.add((byte) 0));
     }
 
     /**

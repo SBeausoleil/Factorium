@@ -1,11 +1,13 @@
 package com.sb.factorium;
 
-import com.github.javafaker.Faker;
-import org.junit.Test;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 public class RandomUtilTest {
 

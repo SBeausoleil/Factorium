@@ -1,26 +1,28 @@
 package com.sb.factorium;
 
-import com.github.javafaker.Faker;
 import com.sb.factorium.beans.*;
 import com.sb.factorium.generators.*;
-import org.junit.Before;
-import org.junit.Test;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 
 public class FieldModTest {
 
-    private Faker faker = new Faker();
-    private CityGenerator cityGenerator;
-    private AddressGenerator addressGenerator;
-    private PersonGenerator personGenerator;
-    private CitizensRegistryGenerator registryGenerator;
-    private LotteryGenerator lotteryGenerator;
+    private static final Faker faker = new Faker();
+    private static CityGenerator cityGenerator;
+    private static AddressGenerator addressGenerator;
+    private static PersonGenerator personGenerator;
+    private static CitizensRegistryGenerator registryGenerator;
+    private static LotteryGenerator lotteryGenerator;
 
-    @Before
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         cityGenerator = new CityGenerator();
         addressGenerator = new AddressGenerator(cityGenerator);
         personGenerator = new PersonGenerator(cityGenerator, addressGenerator);

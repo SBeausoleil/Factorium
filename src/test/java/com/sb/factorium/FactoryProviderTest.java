@@ -5,28 +5,25 @@ import com.sb.factorium.beans.City;
 import com.sb.factorium.generators.AddressGenerator;
 import com.sb.factorium.generators.CityGenerator;
 import com.sb.factorium.generators.PersonGenerator;
-import junit.framework.TestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
 
-
-public class FactoryProviderTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.*;
+public class FactoryProviderTest {
 
     private CityGenerator cityGenerator;
-    private AddressGenerator addressGenerator;
-    private PersonGenerator personGenerator;
-
+    private  AddressGenerator addressGenerator;
     private Collection<Generator<?>> generators;
 
-    @Override
+    @BeforeEach
     public void setUp() throws Exception {
         cityGenerator = new CityGenerator();
         addressGenerator = new AddressGenerator(cityGenerator);
-        personGenerator = new PersonGenerator(cityGenerator, addressGenerator);
+        var personGenerator = new PersonGenerator(cityGenerator, addressGenerator);
 
         generators = new ArrayList<>();
         generators.add(cityGenerator);
@@ -35,6 +32,7 @@ public class FactoryProviderTest extends TestCase {
         generators.add(personGenerator);
     }
 
+    @Test
     public void testCreateRecordingFactoryProvider() throws IllegalAccessException {
         FactoryProvider<RecordingFactory<String, ?>> provider = FactoryProvider.make(
                 generators,
@@ -53,6 +51,7 @@ public class FactoryProviderTest extends TestCase {
         assertSame(addressGenerator.getCityGenerator(), cityGenerator);
     }
 
+    @Test
     public void testCreateRecordingFactoryProvider_replacingReferences() throws IllegalAccessException {
         FactoryProvider<RecordingFactory<String, ?>> provider = FactoryProvider.make(
                 generators,
@@ -64,8 +63,8 @@ public class FactoryProviderTest extends TestCase {
         assertNotNull(provider.factory(Address.class));
         assertFalse(addressGenerator.getCityGenerator() instanceof CityGenerator);
 
-        provider.factory(Address.class).generate();
-        assertEquals(1, ((RecordingFactory) provider.factory(City.class)).created.size());
+        assertNotNull(provider.factory(Address.class).generate());
+        assertEquals(1, ((RecordingFactory<?, City>) provider.factory(City.class)).created.size());
     }
 
     @Test
@@ -91,8 +90,8 @@ public class FactoryProviderTest extends TestCase {
 
     /**
      * Test that a generator that holds an Object field does not get that field replaced.
-     * @throws IllegalAccessException
      */
+    @Test
     public void testCreateRecordingFactoryProvider_generatorWithObject() throws IllegalAccessException {
         GeneratorContainingObject generatorContainingObject = new GeneratorContainingObject();
 

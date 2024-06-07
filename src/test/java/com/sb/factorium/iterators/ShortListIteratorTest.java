@@ -1,10 +1,11 @@
 package com.sb.factorium.iterators;
 
-import com.github.javafaker.Faker;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShortListIteratorTest {
     private static final Faker faker = new Faker();
@@ -12,7 +13,7 @@ public class ShortListIteratorTest {
     private short[] array;
     private ShortListIterator iterator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         array = new short[5];
         for (int i = 0; i < array.length; i++) {
@@ -71,10 +72,12 @@ public class ShortListIteratorTest {
         }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void remove() {
-        iterator.next();
-        iterator.remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            iterator.next();
+            iterator.remove();
+        });
     }
 
     @Test
@@ -85,9 +88,9 @@ public class ShortListIteratorTest {
         assertEquals(setTo, (short) iterator.previous());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void add() {
-        iterator.add((short) 0);
+        assertThrows(UnsupportedOperationException.class, () -> iterator.add((short) 0));
     }
 
     /**

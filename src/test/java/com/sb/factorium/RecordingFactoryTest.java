@@ -4,20 +4,20 @@ import com.sb.factorium.beans.Person;
 import com.sb.factorium.generators.AddressGenerator;
 import com.sb.factorium.generators.CityGenerator;
 import com.sb.factorium.generators.PersonGenerator;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecordingFactoryTest {
 
-    private RecordingFactory<String, Person> personFactory;
+    private static RecordingFactory<String, Person> personFactory;
 
-    @Before
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         Map<String, Generator<Person>> generators = new HashMap<>();
         CityGenerator cityGenerator = new CityGenerator();
         AddressGenerator addressGenerator = new AddressGenerator(cityGenerator);

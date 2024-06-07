@@ -6,13 +6,13 @@ import com.sb.factorium.Generator;
 import com.sb.factorium.generators.AddressGenerator;
 import com.sb.factorium.generators.CityGenerator;
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ReflectionUtilTest {
 
@@ -49,14 +49,14 @@ public class ReflectionUtilTest {
         }
     }
 
-    private SpecificGenerator specificGenerator;
-    private GeneratorWithSpecificGenerator withSpecificSubgenerator;
-    private GeneratorWithFinalSubgenerator withFinalSubgenerator;
-    private CityGenerator cityGenerator;
-    private AddressGenerator addressGenerator;
+    private static SpecificGenerator specificGenerator;
+    private static GeneratorWithSpecificGenerator withSpecificSubgenerator;
+    private static GeneratorWithFinalSubgenerator withFinalSubgenerator;
+    private static CityGenerator cityGenerator;
+    private static AddressGenerator addressGenerator;
 
-    @Before
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         specificGenerator = new SpecificGenerator();
         withSpecificSubgenerator = new GeneratorWithSpecificGenerator(specificGenerator);
         withFinalSubgenerator = new GeneratorWithFinalSubgenerator(specificGenerator);

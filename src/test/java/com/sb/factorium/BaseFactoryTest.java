@@ -2,14 +2,16 @@ package com.sb.factorium;
 
 import com.sb.factorium.beans.City;
 import com.sb.factorium.generators.CityGenerator;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class BaseFactoryTest {
 
@@ -31,22 +33,22 @@ public class BaseFactoryTest {
     private Map<String, Generator<City>> generators;
     private CityGenerator cityGenerator;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         generators = new HashMap<>();
         cityGenerator = new CityGenerator();
         generators.put("city", cityGenerator);
     }
 
-    @Test()
+    @Test
     public void testConstructor() {
         BaseFactory<String, City> factory = new DummyFactory<>(City.class, "city", generators);
         assertEquals("city", factory.getDefaultKey());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testConstructor_absentKey() {
-        new DummyFactory<>(City.class, "foo", generators);
+        assertThrows(IllegalArgumentException.class, () -> new DummyFactory<>(City.class, "foo", generators));
     }
 
     @Test

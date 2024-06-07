@@ -71,7 +71,7 @@ public abstract class BaseFactory<K, T> implements Factory<K, T> {
 
     /**
      * List decorator.
-     * Used in the case of multiple generations. By default just calls decorate(T, Modifier[]) for each item.
+     * Used in the case of multiple generations. By default, just calls decorate(T, Modifier[]) for each item.
      * @param newItems the list of created items
      * @param modifiers the modifiers applied to them.
      */

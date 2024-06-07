@@ -2,11 +2,12 @@ package com.sb.factorium;
 
 import com.sb.factorium.beans.City;
 import com.sb.factorium.generators.CityGenerator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class MethodModTest {
 

@@ -1,10 +1,10 @@
 package com.sb.factorium.iterators;
 
-import com.github.javafaker.Faker;
-import org.junit.Before;
-import org.junit.Test;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DoubleListIteratorTest {
 
@@ -14,7 +14,7 @@ public class DoubleListIteratorTest {
     private double[] array;
     private DoubleListIterator iterator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         array = new double[5];
         for (int i = 0; i < array.length; i++) {
@@ -73,10 +73,12 @@ public class DoubleListIteratorTest {
         }
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void remove() {
-        iterator.next();
-        iterator.remove();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            iterator.next();
+            iterator.remove();
+        });
     }
 
     @Test
@@ -87,9 +89,9 @@ public class DoubleListIteratorTest {
         assertEquals(setTo, iterator.previous(), DELTA_TOLERANCE);
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void add() {
-        iterator.add(0.0);
+        assertThrows(UnsupportedOperationException.class, () -> iterator.add(0.0));
     }
 
     /**

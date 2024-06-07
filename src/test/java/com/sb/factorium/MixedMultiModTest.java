@@ -1,13 +1,15 @@
 package com.sb.factorium;
 
-import com.github.javafaker.Faker;
 import com.sb.factorium.beans.Address;
 import com.sb.factorium.beans.City;
 import com.sb.factorium.generators.AddressGenerator;
 import com.sb.factorium.generators.CityGenerator;
-import org.junit.Test;
+import net.datafaker.Faker;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class MixedMultiModTest {
     private Faker faker = new Faker();
@@ -72,23 +74,24 @@ public class MixedMultiModTest {
         assertEquals(nCitizens, address.getCity().getnCitizens());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInitExceptions_notEnoughArguments_0() {
-        new MixedMultiMod();
+        //noinspection Convert2MethodRef
+        assertThrows(IllegalArgumentException.class, () -> new MixedMultiMod());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInitExceptions_notEnoughArguments_1() {
-        new MixedMultiMod("Not enough");
+        assertThrows(IllegalArgumentException.class, () -> new MixedMultiMod("Not enough"));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testInitExceptions_missingFieldValue() {
-        new MixedMultiMod("Padding", "Padding", "field");
+        assertThrows(IndexOutOfBoundsException.class, () -> new MixedMultiMod("Padding", "Padding", "field"));
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testInitExceptions_notEnoughArgumentsForComplexMethod() {
-        new MixedMultiMod("complexMethod(3)", "one", "two");
+        assertThrows(IndexOutOfBoundsException.class, () -> new MixedMultiMod("complexMethod(3)", "one", "two"));
     }
 }
