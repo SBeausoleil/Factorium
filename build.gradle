@@ -1,0 +1,65 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
+plugins {
+    id("java-library")
+    id "com.vanniktech.maven.publish" version "0.28.0"
+    id("signing")
+}
+
+group = "systems.helius"
+version = "3.0.0-ALPHA-1"
+java.sourceCompatibility = 17
+java.targetCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.datafaker:datafaker:2.1.0")
+    implementation("org.apache.commons:commons-lang3:3.14.0")
+
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    coordinates(group, rootProject.name, version)
+
+    pom {
+        name = "Factorium"
+        description = "A library made to simplify the generation of testing fixtures."
+        url = "https://github.com/SBeausoleil/Factorium"
+        packaging = "jar"
+        licenses {
+            license {
+                name = "MIT Licence"
+                url = "https://github.com/SBeausoleil/Factorium/blob/main/LICENSE.md"
+            }
+        }
+        developers {
+            developer {
+                id = "samuelb"
+                name = "Samuel Beausoleil"
+                email = "sbeausoleil_dev@hotmail.com"
+                organization = "Independent"
+            }
+        }
+        scm {
+            connection = "scm:git:git://github.com/SBeausoleil/Factorium.git"
+            developerConnection = "scm:git:ssh://github.com:SBeausoleil/Factorium.git"
+            url = "https://github.com/SBeausoleil/Factorium/tree/main"
+        }
+    }
+
+    signAllPublications()
+    signing {
+        useGpgCmd()
+    }
+}
