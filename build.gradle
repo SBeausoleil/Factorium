@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "systems.helius"
-version = "3.0.0-ALPHA-1"
+version = "3.0.0-ALPHA-2"
 java.sourceCompatibility = 17
 java.targetCompatibility = 17
 
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.datafaker:datafaker:2.1.0")
+    api("net.datafaker:datafaker:2.1.0")
     implementation("org.apache.commons:commons-lang3:3.14.0")
 
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
