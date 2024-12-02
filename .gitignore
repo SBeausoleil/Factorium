@@ -13,3 +13,7 @@
 # IntelliJ
 .idea/
 target/
+
+# Gradle
+.gradle/
+build/
