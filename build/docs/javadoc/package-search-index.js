@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.sb.factorium"},{"l":"com.sb.factorium.iterators"},{"l":"com.sb.factorium.reflection"}];updateSearchResults();
