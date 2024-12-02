@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sb.factorium.MixedMultiModTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-12-02T01:06:00" hostname="GALNET" time="0.004">
+  <properties/>
+  <testcase name="testApply" classname="com.sb.factorium.MixedMultiModTest" time="0.001"/>
+  <testcase name="testInitExceptions_notEnoughArgumentsForComplexMethod" classname="com.sb.factorium.MixedMultiModTest" time="0.0"/>
+  <testcase name="testInitExceptions_notEnoughArguments_0" classname="com.sb.factorium.MixedMultiModTest" time="0.0"/>
+  <testcase name="testInitExceptions_notEnoughArguments_1" classname="com.sb.factorium.MixedMultiModTest" time="0.001"/>
+  <testcase name="testInitExceptions_missingFieldValue" classname="com.sb.factorium.MixedMultiModTest" time="0.0"/>
+  <testcase name="testInitialization" classname="com.sb.factorium.MixedMultiModTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,32 @@
+plugins {
+    id("java-library")
+    id "maven-publish"
+    id "signing"
+    id "me.champeau.jmh" version "0.7.2"
+}
+
+group = "io.github.sbeausoleil"
+version = "2.1.1"
+java.sourceCompatibility = 8
+java.targetCompatibility = 8
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    api(group: "com.github.javafaker", name: "javafaker", version: "1.0.2")  {
+        exclude module: "snakeyaml"
+    }
+    // Overrides the vulnerable version from javafaker
+    implementation 'org.yaml:snakeyaml:2.3'
+
+    implementation("org.apache.commons:commons-lang3:3.14.0")
+
+    testImplementation 'junit:junit:4.13.2'
+}

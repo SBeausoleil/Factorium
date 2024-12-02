@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sb.factorium.BaseFactoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-12-02T01:05:59" hostname="GALNET" time="0.084">
+  <properties/>
+  <testcase name="testDecorate_Collection" classname="com.sb.factorium.BaseFactoryTest" time="0.083"/>
+  <testcase name="testGetGeneratedType" classname="com.sb.factorium.BaseFactoryTest" time="0.0"/>
+  <testcase name="testConstructor_absentKey" classname="com.sb.factorium.BaseFactoryTest" time="0.001"/>
+  <testcase name="testConstructor" classname="com.sb.factorium.BaseFactoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

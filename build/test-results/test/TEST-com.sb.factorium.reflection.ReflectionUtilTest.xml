@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sb.factorium.reflection.ReflectionUtilTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-12-02T01:06:00" hostname="GALNET" time="0.0">
+  <properties/>
+  <testcase name="testCheckEnclosing_rightEnclosing" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="keepAssignableFrom_doNotKeepFinalGenerators" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="testCheckEnclosing_leftEnclosing" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="keepAssignableFrom_regularSubGenerator" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="keepAssignableFrom_keepFinalGenerators" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="testKeepAssignableFrom_noSpecificGenerator" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <testcase name="testCheckEnclosing_noEnclosing" classname="com.sb.factorium.reflection.ReflectionUtilTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

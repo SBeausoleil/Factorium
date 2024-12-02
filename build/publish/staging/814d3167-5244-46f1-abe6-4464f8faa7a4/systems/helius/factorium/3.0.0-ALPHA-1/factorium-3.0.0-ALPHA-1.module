@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "systems.helius",
+    "module": "factorium",
+    "version": "3.0.0-ALPHA-1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "factorium-3.0.0-ALPHA-1.jar",
+          "url": "factorium-3.0.0-ALPHA-1.jar",
+          "size": 42630,
+          "sha512": "77dcd744b7dec8d87400404eb8bc5824ac0413b1edfe6f66e6c4abc07e259ce557dc273f75db3a9049dffd8949c3b83d4b4a7ec4aa406905d1ad320884a8c08a",
+          "sha256": "b25498738951f9835ffdc2c22272abde1db1beed318cefa7256fada1fb05d63a",
+          "sha1": "a61c3d57c3351c08d42cea49cac78f58bea311b5",
+          "md5": "444c4df01b16e0eb9e485b5bed7bb616"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.datafaker",
+          "module": "datafaker",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-lang3",
+          "version": {
+            "requires": "3.14.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "factorium-3.0.0-ALPHA-1.jar",
+          "url": "factorium-3.0.0-ALPHA-1.jar",
+          "size": 42630,
+          "sha512": "77dcd744b7dec8d87400404eb8bc5824ac0413b1edfe6f66e6c4abc07e259ce557dc273f75db3a9049dffd8949c3b83d4b4a7ec4aa406905d1ad320884a8c08a",
+          "sha256": "b25498738951f9835ffdc2c22272abde1db1beed318cefa7256fada1fb05d63a",
+          "sha1": "a61c3d57c3351c08d42cea49cac78f58bea311b5",
+          "md5": "444c4df01b16e0eb9e485b5bed7bb616"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "factorium-3.0.0-ALPHA-1-sources.jar",
+          "url": "factorium-3.0.0-ALPHA-1-sources.jar",
+          "size": 24129,
+          "sha512": "2d92d1dec5d33e85431930fcc96f366c7bf9e4d2cb5516c7de394b3bff12afe65ca17e23dc13a066bbe0bec070dfac2f3a23eb82da6efd565c90f6e8750444f6",
+          "sha256": "e9293756d172ea94489b47e68830a5afaf69d6cd0691c37a2c929da1757fa861",
+          "sha1": "4efea90f692b08f44f62c21f2b39570267524cc1",
+          "md5": "e6ad0349f503b3c64b967df174171d83"
+        }
+      ]
+    }
+  ]
+}

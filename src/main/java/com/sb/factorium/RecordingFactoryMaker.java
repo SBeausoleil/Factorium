@@ -27,4 +27,6 @@ public class RecordingFactoryMaker implements FactoryMaker<RecordingFactory<Stri
         // Use raw types to coerce out the usage of the wildcards (safe because of the earlier assignable check)
         return new RecordingFactory(target, defaultGenerator.getKey(), coreMap);
     }
+
+    // TODO constructing a recording factory is a pain in the ass when there is only one generator!
 }
