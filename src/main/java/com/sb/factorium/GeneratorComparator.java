@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * Comparator for generators.
- *
+ * <p>
  * First checks if one of the generators declares itself as the default comparator for the target class.
  * If none of them (or if, somehow, both) are the default generator, use a class distance comparison.
  * The default generator will always be the first one in a sorted set of generators, meaning that if you compare two

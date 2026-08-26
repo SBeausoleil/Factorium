@@ -9,7 +9,7 @@ import java.util.WeakHashMap;
 /**
  * A Comparator that compares using the distance between the given classes and its target class.
  * If a given class does not have the target in its hierarchy, an exception will be raised.
- *
+ * <p>
  * This comparator can be configured to never return equal (0). In such a case that two classes
  * are equidistant from the target, they will be compared lexicographically using their name.
  */
