@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    id "maven-publish"
+    id "com.vanniktech.maven.publish" version "0.22.0"
     id "signing"
     id "me.champeau.jmh" version "0.7.2"
 }
@@ -20,13 +20,49 @@ java {
 }
 
 dependencies {
-    api(group: "com.github.javafaker", name: "javafaker", version: "1.0.2")  {
-        exclude module: "snakeyaml"
+    api("com.github.javafaker:javafaker:1.0.2")  {
+        exclude(module: "snakeyaml")
+        exclude(module: "commons-lang3")
     }
     // Overrides the vulnerable version from javafaker
     implementation 'org.yaml:snakeyaml:2.3'
 
-    implementation("org.apache.commons:commons-lang3:3.14.0")
+    implementation('org.apache.commons:commons-lang3:3.18.0')
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+
+    pom {
+        name = "reflet"
+        description = "A common utilities library with a focus on reflective programming."
+        url = "https://github.com/helius-systems/reflet"
+        inceptionYear = "2024"
+        licenses {
+            license {
+                name = "MIT Licence"
+                url = "https://github.com/helius-systems/reflet/blob/master/LICENSE.md"
+            }
+        }
+        developers {
+            developer {
+                id = "samuelb"
+                name = "Samuel Beausoleil"
+                email = "sbeausoleil_dev@hotmail.com"
+                organization = "Independent"
+            }
+        }
+        scm {
+            connection = "scm:git:git://github.com/helius-systems/reflet.git"
+            developerConnection = "scm:git:ssh://github.com:helius-systems/reflet.git"
+            url = "https://github.com/helius-systems/reflet"
+        }
+    }
+
+    signAllPublications()
+    signing {
+        useGpgCmd()
+    }
 }
